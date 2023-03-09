@@ -31,32 +31,7 @@ $('.accordion-trigger').on('click', function () {
   }
 });
 
-// Store the original location of the modal video element
-const originalLocation = $('.modal-video').parent();
-
-$('.play-button').on('click', function (e) {
-  e.preventDefault();
-  const targetId = $(this).attr('href');
-  const modalVideo = $(targetId);
-  modalVideo.detach();
-  $('body').append(modalVideo);
-  requestAnimationFrame(() => {
-    modalVideo.addClass('is-open');
-    $('body').css('overflow', 'hidden');
-  });
-});
-
-$('.modal-video_close').on('click', function (e) {
-  e.preventDefault();
-  const modalVideo = $(this).closest('.modal-video');
-  modalVideo.removeClass('is-open');
-  setTimeout(function () {
-    modalVideo.detach();
-    originalLocation.append(modalVideo);
-    $('body').css('overflow', 'auto');
-  }, 500); // Delay in milliseconds
-});
-
+// Normal modals
 const modals = $('.modal');
 modals.detach().appendTo('body');
 
@@ -73,6 +48,30 @@ $('.modal_close').on('click', function (e) {
   const modal = $(this).closest('.modal');
   modal.removeClass('is-open');
   $('body').css('overflow', 'auto');
+});
+
+// Video modals
+const modalsVideo = $('.modal-video');
+modalsVideo.detach().appendTo('body');
+
+$(document).on('click', 'a[href^="#modal-video-"]', function (e) {
+  e.preventDefault();
+  const target = $(this).attr('href');
+  $(target).addClass('is-open');
+  $('body').css('overflow', 'hidden');
+  history.replaceState({}, document.title, window.location.href.split('#')[0]);
+  const video = $(target).find('.modal-video_player');
+  video[0].play();
+});
+
+$('.modal-video_close').on('click', function (e) {
+  e.preventDefault();
+  const modalVideo = $(this).closest('.modal-video');
+  modalVideo.removeClass('is-open');
+  $('body').css('overflow', 'auto');
+  // Pause the video
+  const video = $(this).closest('.modal-video').find('.modal-video_player');
+  video[0].pause();
 });
 
 checkAccordionState();
