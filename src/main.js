@@ -36,3 +36,4 @@ $('.accordion-trigger').on('click', function () {
 
 checkAccordionState()
 library()
+console.log('Hello, world!')
