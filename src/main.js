@@ -1,8 +1,9 @@
-import animateTitle from './features/animateTitle'
-import createBadge from './features/createBasge'
+import $ from 'jquery'
+
+import library from './modules/library'
+
 import './styles/style.css'
 
-console.log('Welcome to Vite + JS + Webflow!')
-
-createBadge()
-animateTitle()
+$(document).ready(function () {
+  library()
+})
