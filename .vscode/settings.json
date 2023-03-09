@@ -1,8 +1,8 @@
 {
   "editor.tabSize": 2,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": false
+    "source.fixAll": true
   },
   "eslint.validate": [
     "javascript"

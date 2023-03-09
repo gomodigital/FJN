@@ -21,6 +21,8 @@
   ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "eqeqeq": "off",
+    "no-console": "off",
     "import/order": [
       "error",
       {

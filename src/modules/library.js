@@ -3,6 +3,7 @@ import $ from 'jquery'
 export default function library() {
   const searchInput = $('#library-search_input')
   const searchReset = $('#library-search_reset')
+  const searchSubmit = $('#library-search_submit')
   const featuredArticles = $('.library-articles.is-featured')
   const typeLinks = $('.library-types_item')
   const typeClear = $('.library-types_clear')
@@ -16,8 +17,10 @@ export default function library() {
   if (searchInput.val().length > 0 || searchParams.has('search')) {
     hideFeaturedArticles()
     searchReset.show()
+    searchSubmit.hide()
   } else {
     showFeaturedArticles()
+    searchSubmit.show()
   }
 
   // Fade in search reset button when user starts typing
@@ -25,9 +28,11 @@ export default function library() {
     if (searchInput.val().length > 0) {
       hideFeaturedArticles()
       searchReset.show()
+      searchSubmit.hide()
     } else {
       showFeaturedArticles()
       searchReset.hide()
+      searchSubmit.show()
     }
   })
 
@@ -35,6 +40,7 @@ export default function library() {
   searchReset.on('click', () => {
     showFeaturedArticles()
     searchReset.hide()
+    searchSubmit.show()
   })
 
   // Hide featured articles when type link is active
