@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default function library() {
+export function library() {
   const searchInput = $('#library-search_input');
   const searchReset = $('#library-search_reset');
   const searchSubmit = $('#library-search_submit');

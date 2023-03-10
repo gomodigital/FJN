@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default function accordion() {
+export function accordion() {
   // Open accordion
   var $gridLine = $('.grid-line--diagonal-inverted');
 

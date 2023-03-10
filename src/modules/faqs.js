@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-export default function faqs() {
+export function faqs() {
   const $faqNav = $('.faq-nav');
   const $faqSections = $('.faq-section');
 
