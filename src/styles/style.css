@@ -1,3 +1,7 @@
+.no-scroll {
+  overflow: hidden;
+}
+
 .modal.is-open {
   display: block;
 }

@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+import accordion from './modules/accordion';
+import faqs from './modules/faqs';
 import library from './modules/library';
 
 import './styles/style.css';
@@ -10,27 +12,6 @@ $('.copyright-year').text(currentYear);
 // Open external links in a new tab
 $('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
-// Open accordion
-var $gridLine = $('.grid-line--diagonal-inverted');
-
-// Function to check the initial state of the accordion items and hide the grid line if necessary
-function checkAccordionState() {
-  if ($('.accordion-item.is-open').length > 0) {
-    $gridLine.hide();
-  } else {
-    $gridLine.show();
-  }
-}
-
-$('.accordion-trigger').on('click', function () {
-  $(this).parent('.accordion-item').toggleClass('is-open');
-  if ($('.accordion-item.is-open').length > 0) {
-    $gridLine.hide();
-  } else {
-    $gridLine.show();
-  }
-});
-
 // Normal modals
 const modals = $('.modal');
 modals.detach().appendTo('body');
@@ -39,7 +20,7 @@ $(document).on('click', 'a[href^="#modal-"]', function (e) {
   e.preventDefault();
   const target = $(this).attr('href');
   $(target).addClass('is-open');
-  $('body').css('overflow', 'hidden');
+  $('body').addClass('no-scroll');
   history.replaceState({}, document.title, window.location.href.split('#')[0]);
 });
 
@@ -47,7 +28,7 @@ $('.modal_close').on('click', function (e) {
   e.preventDefault();
   const modal = $(this).closest('.modal');
   modal.removeClass('is-open');
-  $('body').css('overflow', 'auto');
+  $('body').removeClass('no-scroll');
 });
 
 // Video modals
@@ -58,7 +39,7 @@ $(document).on('click', 'a[href^="#modal-video-"]', function (e) {
   e.preventDefault();
   const target = $(this).attr('href');
   $(target).addClass('is-open');
-  $('body').css('overflow', 'hidden');
+  $('body').addClass('no-scroll');
   history.replaceState({}, document.title, window.location.href.split('#')[0]);
   const video = $(target).find('.modal-video_player');
   video[0].play();
@@ -68,15 +49,24 @@ $('.modal-video_close').on('click', function (e) {
   e.preventDefault();
   const modalVideo = $(this).closest('.modal-video');
   modalVideo.removeClass('is-open');
-  $('body').css('overflow', 'auto');
+  $('body').removeClass('no-scroll');
   // Pause the video
   const video = $(this).closest('.modal-video').find('.modal-video_player');
   video[0].pause();
 });
 
-checkAccordionState();
+const accordionElements = $('.accordion-wrapper');
+const faqsSection = $('.section_faqs');
+const librarySection = $('.section_library-header');
 
-if (window.location.pathname.startsWith('/biblioteca') || window.location.pathname.startsWith('/artigo') || window.location.pathname.startsWith('/tema') || window.location.pathname.startsWith('/tag')) {
-  console.log('library');
+if (accordionElements.length > 0) {
+  accordion();
+}
+
+if (faqsSection.length > 0) {
+  faqs();
+}
+
+if (librarySection.length > 0) {
   library();
 }
