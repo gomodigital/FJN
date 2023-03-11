@@ -67,3 +67,15 @@ export function animateMenu() {
   tl.from(mainMenuItems, { duration: 0.5, opacity: 0, y: -20, stagger: 0.1, ease: 'power4.out' }, 0.4);
   tl.from(closeButton, { duration: 0.5, opacity: 0, ease: 'power4.out' }, 1);
 }
+
+export function offsetMenuButton() {
+  const menuButton = $('#main-menu-button');
+  let tl = gsap.timeline();
+  tl.to(menuButton, { duration: 0.5, opacity: 0, yPercent: -100, ease: 'power4.out' }, 0);
+}
+
+export function resetMenuButton() {
+  const menuButton = $('#main-menu-button');
+  let tl = gsap.timeline();
+  tl.to(menuButton, { duration: 0.5, opacity: 1, yPercent: 0, ease: 'power4.out' }, 0);
+}
