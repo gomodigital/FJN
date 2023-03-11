@@ -1,5 +1,8 @@
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/css/core';
+// import $ from 'jquery';
+
+import { animateHeroSlider } from './animations';
 
 export function sliderHomeHero() {
   const heroSlider = new Splide('.hero-slider', {
@@ -7,11 +10,16 @@ export function sliderHomeHero() {
     rewind: true,
     perMove: 1,
     pagination: false,
-    autoplay: true,
-    interval: 2000,
+    autoplay: false,
+    // interval: 2000,
   });
 
   heroSlider.mount();
+  animateHeroSlider();
+
+  heroSlider.on('move', function () {
+    animateHeroSlider();
+  });
 }
 
 export function sliderHomePrograms() {

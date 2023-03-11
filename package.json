@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
-    "gsap": "^3.9.1"
+    "gsap": "^3.9.1",
+    "split-type": "^0.3.3"
   }
 }

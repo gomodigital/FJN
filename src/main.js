@@ -53,6 +53,8 @@ languageButton.on('click', function (e) {
   }, 500);
 });
 
+// animateLines();
+
 if (accordionElements.length > 0) {
   accordion();
 }

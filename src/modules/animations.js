@@ -1,5 +1,9 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
+import SplitType from 'split-type';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function animateMap() {
   const mapInfo = $('#map-info');
@@ -78,4 +82,39 @@ export function resetMenuButton() {
   const menuButton = $('#main-menu-button');
   let tl = gsap.timeline();
   tl.to(menuButton, { duration: 0.5, opacity: 1, yPercent: 0, ease: 'power4.out' }, 0);
+}
+
+// export function animateLines() {
+//   const verticalLines = $('.grid-line--vertical');
+//   verticalLines.css('scaleY', '0');
+//   // const horizontalLines = $('.grid-line--horizontal');
+//   let tl = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: verticalLines,
+//       start: 'top top',
+//       end: 'bottom top',
+//       scrub: true,
+//     },
+//   });
+//   verticalLines.each(function () {
+//     tl.to($(this), { duration: 2, scaleY: 1, ease: 'power4.out' }, 0);
+//   });
+// }
+
+export function animateHeroSlider() {
+  const heroSlider = $('.hero-slider');
+  const heroSlideHeading = heroSlider.find('.heading_xlarge');
+  const heroSlideButton = heroSlider.find('.button');
+  const heroSlideIntro = heroSlider.find('.hero-slider_intro');
+  const heroSlideImageContainer = heroSlider.find('.hero-slider_image-container');
+  const heroSlideImage = heroSlider.find('.hero-slider_image');
+  let typeSplit = new SplitType(heroSlideHeading, { types: 'words', tagName: 'span' }); // eslint-disable-line
+  let chars = heroSlideHeading.find('span');
+  let tl = gsap.timeline();
+  // tl.from(heroSlideHeading, { duration: 1, opacity: 0, y: 200, ease: 'power4.out' }, 0);
+  tl.from(chars, { duration: 0.5, opacity: 0, y: 20, stagger: 0.1, ease: 'power4.out' }, 0);
+  tl.from(heroSlideIntro, { duration: 1, opacity: 0, y: 20, ease: 'power4.out' }, 0.4);
+  tl.from(heroSlideImageContainer, { duration: 1, clipPath: 'circle(0%)', ease: 'power4.out' }, 0.4);
+  tl.fromTo(heroSlideImage, { duration: 5, scale: 2 }, { scale: 1, ease: 'power4.out' }, 0.4);
+  tl.from(heroSlideButton, { duration: 1, opacity: 0, y: 20, ease: 'power4.out' }, 0.4);
 }

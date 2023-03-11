@@ -40,3 +40,17 @@
 .button-close:hover .button-close_svg {
   color: #001b7a;
 }
+
+.hero-slider_image-container {
+  clip-path: circle(100%);
+}
+
+
+
+/* [data-anim="stagger-letters"] {
+  opacity: 0;
+} */
+
+/* .heading_xlarge {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+} */
