@@ -9,3 +9,34 @@
 .modal-video_player {
   width: 100%;
 }
+
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+}
+
+.library-themes_link,
+.bf-indicators_collection-item,
+.bf-rankings_collection-item,
+.bf-tools_collection-item {
+  scroll-snap-align: start;
+}
+
+/* .button-close {
+  clip-path: circle(0%);
+  transition: clip-path 0.5s ease;
+} */
+
+.button-close:hover {
+  transform: scale(1.2);
+  border-color: transparent;
+}
+
+.button-close:hover .button-close_bg {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.button-close:hover .button-close_svg {
+  color: #001b7a;
+}

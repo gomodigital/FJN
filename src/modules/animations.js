@@ -53,3 +53,17 @@ export function animateMap() {
   // trigger the click event on the initial selected link
   selectedLink.click();
 }
+
+export function animateMenu() {
+  const mainMenuItems = $('.nav-primary_item');
+  const secondaryMenuItems = $('.nav-secondary_item');
+  const closeButton = $('#main-menu-close');
+  const navLogoBackground = $('.nav_logo-bg');
+  const languageButton = $('.button-language');
+  let tl = gsap.timeline();
+  tl.from(navLogoBackground, { duration: 1, opacity: 0, scale: 0, ease: 'power4.out' }, 0);
+  tl.from(languageButton, { duration: 0.5, y: -20, ease: 'power4.out' }, 0);
+  tl.from(secondaryMenuItems, { duration: 0.5, opacity: 0, y: -20, stagger: 0.1, ease: 'power4.out' }, 0);
+  tl.from(mainMenuItems, { duration: 0.5, opacity: 0, y: -20, stagger: 0.1, ease: 'power4.out' }, 0.4);
+  tl.from(closeButton, { duration: 0.5, opacity: 0, ease: 'power4.out' }, 1);
+}

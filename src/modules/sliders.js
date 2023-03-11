@@ -22,7 +22,7 @@ export function sliderHomePrograms() {
     gap: '.5rem',
     pagination: false,
     autoplay: true,
-    interval: 2000,
+    interval: 5000,
     breakpoints: {
       568: {
         perPage: 2,

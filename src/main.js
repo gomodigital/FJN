@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { accordion } from './modules/accordion';
-import { animateMap } from './modules/animations';
+import { animateMap, animateMenu } from './modules/animations';
 import { faqs } from './modules/faqs';
 import { library } from './modules/library';
 import { videoModals, modals } from './modules/modals';
@@ -19,12 +19,39 @@ const mapPartners = $('.section_home-partners');
 const heroSlider = $('.hero-slider');
 const programsSlider = $('.programs-slider');
 const partnersSlider = $('.partners-slider');
+const menuButton = $('#main-menu-button');
+const closeMenu = $('#main-menu-close');
+const nav = $('.nav_wrapper');
+const languageButton = $('.button-language');
 
 // Set the current year in the footer
 $('.copyright-year').text(currentYear);
 
 // Open external links in a new tab
 $('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
+
+menuButton.on('click', function (e) {
+  e.preventDefault();
+  nav.fadeIn(100);
+  $('body').addClass('no-scroll');
+  animateMenu();
+});
+
+closeMenu.on('click', function (e) {
+  e.preventDefault();
+  nav.fadeOut(100);
+  $('body').removeClass('no-scroll');
+});
+
+languageButton.on('click', function (e) {
+  e.preventDefault();
+  let url = $(this).attr('href');
+  let innerCircle = $(this).find('.button-language_switch-circle');
+  innerCircle.css('transform', 'translateX(100%)');
+  setTimeout(function () {
+    window.location.href = url;
+  }, 500);
+});
 
 if (accordionElements.length > 0) {
   accordion();
