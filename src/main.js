@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { accordion } from './modules/accordion';
-import { animateMap, animateMenu, animateHero } from './modules/animations';
+import * as animation from './modules/animations';
 import { faqs } from './modules/faqs';
 import { library } from './modules/library';
 import { videoModals, modals } from './modules/modals';
@@ -34,7 +34,7 @@ menuButton.on('click', function (e) {
   e.preventDefault();
   nav.fadeIn(100);
   $('body').addClass('no-scroll');
-  animateMenu();
+  animation.animateMenu();
 });
 
 closeMenu.on('click', function (e) {
@@ -53,8 +53,7 @@ languageButton.on('click', function (e) {
   }, 500);
 });
 
-// animateLines();
-animateHero();
+animation.animateLines();
 
 if (accordionElements.length > 0) {
   accordion();
@@ -77,7 +76,7 @@ if (modalsElements.length > 0) {
 }
 
 if (mapPartners.length > 0) {
-  animateMap();
+  animation.animateMap();
 }
 
 if (heroSlider.length > 0) {
@@ -90,4 +89,44 @@ if (programsSlider.length > 0) {
 
 if (partnersSlider.length > 0) {
   sliderHomePartners();
+}
+
+if ($('.section_hero').length > 0) {
+  animation.animateHeroSection();
+}
+
+if ($('.section_intro').length > 0) {
+  animation.animateIntroSection();
+}
+
+if ($('.section_3-highlights').length > 0) {
+  animation.animate3HighlightsSection();
+}
+
+if ($('.section_highlight').length > 0) {
+  animation.animateHighlightSection();
+}
+
+if ($('.section_accordion').length > 0) {
+  animation.animateAccordionItems();
+}
+
+if ($('.section_product-hero').length > 0) {
+  animation.animateProductHero();
+}
+
+if ($('.section_product-grid').length > 0) {
+  animation.animateProductGrid();
+}
+
+if ($('.section_home-featured').length > 0 || $('.section_home-career-tips').length > 0) {
+  animation.animateFeaturedArticles();
+}
+
+if ($('.section_home-partners').length > 0) {
+  animation.animatePartners();
+}
+
+if ($('.home-footer').length > 0) {
+  animation.animateHomeFooter();
 }

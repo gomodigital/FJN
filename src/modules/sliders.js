@@ -1,6 +1,5 @@
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/css/core';
-// import $ from 'jquery';
 
 import { animateHeroSlider } from './animations';
 
@@ -15,9 +14,12 @@ export function sliderHomeHero() {
   });
 
   heroSlider.mount();
-  animateHeroSlider();
 
-  heroSlider.on('move', function () {
+  heroSlider.on('ready', function () {
+    animateHeroSlider();
+  });
+
+  heroSlider.on('moved', function () {
     animateHeroSlider();
   });
 }

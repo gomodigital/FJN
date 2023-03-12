@@ -45,11 +45,32 @@
   clip-path: circle(100%);
 }
 
-/* [data-anim="stagger-letters"] .word {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  overflow: hidden;
-} */
+.section_hero .heading_xlarge,
+.section_hero .heading_large,
+.section_intro .heading_xlarge,
+.section_intro .heading_large,
+.section_product-hero .heading_large,
+.hero-slider_content .heading_xlarge,
+.home-footer .heading_large {
+  opacity: 0;
+}
 
-/* .heading_xlarge {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-} */
+html.w-editor .heading_xlarge,
+html.w-editor .heading_large {
+  opacity: 1;
+}
+
+.word {
+  overflow: hidden;
+  margin-bottom: -0.1em;
+  transform-origin: bottom;
+}
+
+.highlight-item_image,
+.product-hero_image {
+  clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.highlight_image {
+  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+}
