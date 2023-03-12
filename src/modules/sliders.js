@@ -15,9 +15,7 @@ export function sliderHomeHero() {
 
   heroSlider.mount();
 
-  heroSlider.on('ready', function () {
-    animateHeroSlider();
-  });
+  animateHeroSlider();
 
   heroSlider.on('moved', function () {
     animateHeroSlider();

@@ -74,3 +74,12 @@ html.w-editor .heading_large {
 .highlight_image {
   clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
 }
+
+.button:hover .button_fill {
+  transform: translateY(0);
+}
+
+.button_text {
+  clip-path: polygon(100% 100%, 0 100%, 0 0, 100% 0);
+  overflow: hidden;
+}

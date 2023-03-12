@@ -38,7 +38,7 @@ export function animateLines() {
     ScrollTrigger.create({
       trigger: $(this),
       start: 'top bottom',
-      markers: true,
+      markers: false,
       onEnter: () => tl.play(),
     });
   });
@@ -320,9 +320,9 @@ export function animateHeroSlider() {
     tl.from(heading.find('.char'), { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
     gsap.set(heading, { opacity: 1 });
     tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1, ease: 'back.out(2)' });
-    tl.from(image, { scale: 2, duration: 1, ease: 'back.out(2)' });
     tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
+    tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1, ease: 'back.out(2)' }, '-=0.5');
+    tl.from(image, { scale: 2, duration: 1, ease: 'power4.out' }, '-=1');
   });
 }
 
