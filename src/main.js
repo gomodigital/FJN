@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import { accordion } from './modules/accordion';
-import { animateMap, animateMenu } from './modules/animations';
+import { animateMap, animateMenu, animateHero } from './modules/animations';
 import { faqs } from './modules/faqs';
 import { library } from './modules/library';
 import { videoModals, modals } from './modules/modals';
@@ -54,6 +54,7 @@ languageButton.on('click', function (e) {
 });
 
 // animateLines();
+animateHero();
 
 if (accordionElements.length > 0) {
   accordion();

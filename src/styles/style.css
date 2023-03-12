@@ -45,10 +45,9 @@
   clip-path: circle(100%);
 }
 
-
-
-/* [data-anim="stagger-letters"] {
-  opacity: 0;
+/* [data-anim="stagger-letters"] .word {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  overflow: hidden;
 } */
 
 /* .heading_xlarge {

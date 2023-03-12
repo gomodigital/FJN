@@ -108,8 +108,8 @@ export function animateHeroSlider() {
   const heroSlideIntro = heroSlider.find('.hero-slider_intro');
   const heroSlideImageContainer = heroSlider.find('.hero-slider_image-container');
   const heroSlideImage = heroSlider.find('.hero-slider_image');
-  let typeSplit = new SplitType(heroSlideHeading, { types: 'words', tagName: 'span' }); // eslint-disable-line
-  let chars = heroSlideHeading.find('span');
+  let typeSplit = new SplitType(heroSlideHeading, { types: 'words, chars', tagName: 'span' }); // eslint-disable-line
+  let chars = heroSlideHeading.find('.char');
   let tl = gsap.timeline();
   // tl.from(heroSlideHeading, { duration: 1, opacity: 0, y: 200, ease: 'power4.out' }, 0);
   tl.from(chars, { duration: 0.5, opacity: 0, y: 20, stagger: 0.1, ease: 'power4.out' }, 0);
@@ -117,4 +117,16 @@ export function animateHeroSlider() {
   tl.from(heroSlideImageContainer, { duration: 1, clipPath: 'circle(0%)', ease: 'power4.out' }, 0.4);
   tl.fromTo(heroSlideImage, { duration: 5, scale: 2 }, { scale: 1, ease: 'power4.out' }, 0.4);
   tl.from(heroSlideButton, { duration: 1, opacity: 0, y: 20, ease: 'power4.out' }, 0.4);
+}
+
+export function animateHero() {
+  const heading = $('.hero_heading .heading_xlarge');
+  const headingSplit = new SplitType(heading, { types: 'words, chars', tagName: 'span' }); // eslint-disable-line
+  const headingLetters = heading.find('.char');
+  const intro = $('.hero-main-content .text_large');
+  const cta = $('.hero-main-content .cta-group');
+  let tl = gsap.timeline();
+  tl.from(headingLetters, { duration: 0.1, opacity: 0, y: 20, ease: 'power4.out', stagger: 0.05, autoAlpha: 1 }, 0);
+  tl.from(intro, { duration: 0.5, opacity: 0, y: 20, ease: 'power4.out', autoAlpha: 1 }, '+=0.2');
+  tl.from(cta, { duration: 0.5, opacity: 0, y: 20, ease: 'power4.out', autoAlpha: 1 }, '+=0.05');
 }
