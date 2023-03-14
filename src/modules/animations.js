@@ -16,8 +16,9 @@ function createScrollTrigger(triggerElement, timeline, start = 'top 60%') {
   });
 }
 
+// Need to solve the FAQ error
 let typeSplit = new SplitType('.heading_xlarge, .heading_large', { // eslint-disable-line
-  types: 'words, chars',
+  types: 'chars',
   tagName: 'span',
 });
 

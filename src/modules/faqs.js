@@ -6,16 +6,16 @@ export function faqs() {
 
   $faqSections.each(function () {
     const $section = $(this);
-    const $id = $section.find('.faq-group-slug').val();
-    const $handle = $section.find('.faq-group-menu-handle').val();
+    const $id = $section.find('.faq-group_slug').val();
+    const $handle = $section.find('.faq-group_menu-handle').val();
 
     $section.attr('id', $id);
-    $faqNav.append('<a href="#' + $id + '" class="faq-nav-link">' + $handle + '</a>');
-    const $firstAccordionItem = $section.find('.faq-accordion-item').first();
+    $faqNav.append('<a href="#' + $id + '" class="faq-nav_link">' + $handle + '</a>');
+    const $firstAccordionItem = $section.find('.faq-accordion_item').first();
     $firstAccordionItem.addClass('is-open');
   });
 
-  const $navLinks = $faqNav.find('.faq-nav-link');
+  const $navLinks = $faqNav.find('.faq-nav_link');
   $navLinks.removeClass('w--current');
 
   const currentHash = window.location.hash;
@@ -34,11 +34,11 @@ export function faqs() {
     $(this).addClass('w--current'); // Add the w--current class to the clicked link
   });
 
-  const $faqWrapper = $('.faq-group-collection-wrapper');
+  const $faqWrapper = $('.faq-group_collection-wrapper');
   const faqNavHeight = $faqNav.outerHeight();
   $faqWrapper.css('margin-top', -faqNavHeight);
 
-  $('.faq-accordion-trigger').on('click', function () {
-    $(this).parent('.faq-accordion-item').toggleClass('is-open');
+  $('.faq-accordion_trigger').on('click', function () {
+    $(this).parent('.faq-accordion_item').toggleClass('is-open');
   });
 }

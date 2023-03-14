@@ -1,4 +1,6 @@
 import $ from 'jquery';
+// import lottie from 'lottie-web';
+// import { Player } from 'player.js';
 
 import { accordion } from './modules/accordion';
 import * as animation from './modules/animations';
@@ -7,7 +9,7 @@ import { library } from './modules/library';
 import { videoModals, modals } from './modules/modals';
 import { sliderHomeHero, sliderHomePrograms, sliderHomePartners } from './modules/sliders';
 
-import './styles/style.css';
+import './styles/style.scss';
 
 const currentYear = new Date().getFullYear();
 const accordionElements = $('.accordion-wrapper');
@@ -54,6 +56,27 @@ languageButton.on('click', function (e) {
 });
 
 animation.animateLines();
+
+// const lottieContainer = document.querySelector('.lottie');
+// const lottieAnimation = lottie.loadAnimation({
+//   container: lottieContainer,
+//   renderer: 'svg',
+//   loop: false,
+//   autoplay: false,
+//   path: 'https://uploads-ssl.webflow.com/6384edcb8a540581e11a078d/640b6d66d086fdca1ca42584_menu-button.json',
+// });
+
+// lottieContainer.addEventListener('mouseenter', function () {
+//   lottieAnimation.setDirection(1);
+//   lottieAnimation.setSpeed(2);
+//   lottieAnimation.play();
+// });
+
+// lottieContainer.addEventListener('mouseleave', function () {
+//   lottieAnimation.setDirection(-1);
+//   lottieAnimation.setSpeed(2);
+//   lottieAnimation.play();
+// });
 
 if (accordionElements.length > 0) {
   accordion();
