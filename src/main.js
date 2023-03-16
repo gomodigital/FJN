@@ -153,8 +153,3 @@ if ($('.section_home-partners').length > 0) {
 if ($('.home-footer').length > 0) {
   animation.animateHomeFooter();
 }
-
-// // if body has class "tests", run the sliderHomePrograms2 function
-// if ($('body').hasClass('tests')) {
-//   sliderHomePrograms2();
-// }
