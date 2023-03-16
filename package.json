@@ -29,6 +29,7 @@
     "lottie-web": "^5.10.2",
     "motion": "^10.15.5",
     "sass": "^1.59.2",
-    "split-type": "^0.3.3"
+    "split-type": "^0.3.3",
+    "swiper": "^9.1.0"
   }
 }

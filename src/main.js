@@ -7,7 +7,7 @@ import * as animation from './modules/animations';
 import { faqs } from './modules/faqs';
 import { library } from './modules/library';
 import { videoModals, modals } from './modules/modals';
-import { sliderHomeHero, sliderHomePrograms, sliderHomePartners } from './modules/sliders';
+import { sliderHomeHero, sliderHomePrograms, sliderHomePartners } from './modules/sliders'; // eslint-disable-line
 
 import './styles/style.scss';
 
@@ -153,3 +153,8 @@ if ($('.section_home-partners').length > 0) {
 if ($('.home-footer').length > 0) {
   animation.animateHomeFooter();
 }
+
+// if body has class tests, run sliderHomePrograms2
+// if ($('body').hasClass('tests')) {
+//   sliderHomePrograms2();
+// }
