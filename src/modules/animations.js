@@ -16,8 +16,8 @@ function createScrollTrigger(triggerElement, timeline, start = 'top 60%') {
   });
 }
 
-// Need to solve the FAQ error
-let typeSplit = new SplitType('.heading_xlarge, .heading_large', { // eslint-disable-line
+let headingsToSplit = $('.hero-slider_content .heading_xlarge, .hero_heading .heading_xlarge, .product-hero_header .heading_large, .highlight_content .heading_large, .section_intro .heading_xlarge, .section_intro .heading_large, .home-footer_block .heading_large, .partners_intro .heading_large');
+let typeSplit = new SplitType(headingsToSplit, { // eslint-disable-line
   types: 'words, chars',
   tagName: 'span',
 });
@@ -307,23 +307,6 @@ export function animateProductGrid() {
       tl.from(productGridItems, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)', stagger: 0.5 });
     }
     createScrollTrigger(productGridItems, tl);
-  });
-}
-
-export function animateHeroSlider() {
-  $('.splide__slide').each(function () {
-    let heading = $(this).find('.heading_xlarge');
-    let intro = $(this).find('.hero-slider_intro');
-    let cta = $(this).find('.button');
-    let imageContainer = $(this).find('.hero-slider_image-container');
-    let image = $(this).find('.hero-slider_image');
-    let tl = gsap.timeline();
-    tl.from(heading.find('.char'), { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
-    gsap.set(heading, { opacity: 1 });
-    tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1, ease: 'back.out(2)' }, '-=0.5');
-    tl.from(image, { scale: 2, duration: 1, ease: 'power4.out' }, '-=1');
   });
 }
 

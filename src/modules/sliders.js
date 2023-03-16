@@ -1,15 +1,23 @@
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/css/core';
 import { gsap } from 'gsap'; // eslint-disable-line
-import Swiper, { Navigation, Autoplay } from 'swiper';
+import Swiper, { Navigation, Autoplay, EffectFade } from 'swiper'; // eslint-disable-line
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 
-Swiper.use([Navigation, Autoplay]);
+Swiper.use([Navigation, Autoplay, EffectFade]);
 
 export function sliderHomeHero() {
   const swiper = new Swiper('.hero-slider .swiper', { // eslint-disable-line
-    direction: 'horizontal',
     loop: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true,
+    },
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: true,
+    },
     navigation: {
       nextEl: '.hero-slider_nav .swiper-button-next',
       prevEl: '.hero-slider_nav .swiper-button-prev',
@@ -37,8 +45,8 @@ export function sliderHomeHero() {
     tl.to(heading, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
     tl.to(intro, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
     tl.to(cta, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.to(imageContainer, { clipPath: 'circle(100%)', duration: 1, ease: 'back.out(2)' }, '-=0.5');
-    tl.to(image, { scale: 1, duration: 1, ease: 'power4.out' }, '-=1');
+    tl.to(imageContainer, { clipPath: 'circle(100%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
+    tl.to(image, { scale: 1, duration: 1.5, ease: 'power4.out' }, '-=1.5');
     slide.animation = tl;
   }
 
@@ -59,27 +67,34 @@ export function sliderHomeHero() {
   }, 1000);
 }
 
-// export function sliderHomePrograms2() {
-//   const swiperEl = document.querySelector('.test-slider .swiper');
-//   const swiper = new Swiper(swiperEl, { // eslint-disable-line
-//     // direction: 'horizontal',
+// export function sliderHomePrograms() {
+//   const swiper = new Swiper('.programs-slider .swiper', { // eslint-disable-line
 //     slidesPerView: 'auto',
-//     // width: '21.55%',
 //     spaceBetween: 8, // Adjust this value to match the desired gap (8px = 0.5rem)
-//     loop: true,
-//     watchOverflow: true,
+//     // loop: true,
+//     // loopedSlides: 8,
+//     // watchOverflow: true,
 //     // autoplay: {
 //     //   delay: 5000,
 //     // },
 //     navigation: {
-//       nextEl: '.test-slider_nav .swiper-button-next',
-//       prevEl: '.test-slider_nav .swiper-button-prev',
+//       nextEl: '.programs-slider_nav .swiper-button-next',
+//       prevEl: '.programs-slider_nav .swiper-button-prev',
 //     },
 //     // breakpoints: {
 //     //   568: {
 //     //     slidesPerView: 2,
 //     //   },
 //     // },
+//   });
+//   swiper.on('slideChange', function () {
+//     const lastIndex = swiper.slides.length - 1;
+
+//     if (swiper.activeIndex === lastIndex) {
+//       swiper.slideTo(0, 0, false);
+//     } else if (swiper.activeIndex === 0 && swiper.previousIndex === lastIndex) {
+//       swiper.slideTo(lastIndex, 0, false);
+//     }
 //   });
 // }
 
