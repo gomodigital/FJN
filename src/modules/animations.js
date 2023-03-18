@@ -137,7 +137,8 @@ export function animateHeroSection() {
     tagName: 'span',
   });
   let char = heading.find('.char');
-  tlHero.from(heroContainer, { autoAlpha: 0 });
+  gsap.set(heroContainer, { autoAlpha: 0 });
+  tlHero.to(heroContainer, { autoAlpha: 1 });
   tlHero.from(char, { yPercent: 100, stagger: { amount: 0.25 } }, '+=2');
   tlHero.from(intro, { y: 20 }, '-=1');
   tlHero.from(cta, { y: 20 }, '-=0.5');
@@ -161,7 +162,8 @@ export function animateProductHero() {
   });
   let char = heading.find('.char');
   // let tl = gsap.timeline({ defaults: { opacity: 0, duration: 0.5, ease: 'back.out(2)' } });
-  tlProductHero.from(heroContainer, { autoAlpha: 0 });
+  gsap.set(heroContainer, { autoAlpha: 0 });
+  tlProductHero.to(heroContainer, { autoAlpha: 1 });
   tlProductHero.from(char, { yPercent: 100, stagger: { amount: 0.25 } });
   tlProductHero.from(intro, { y: 20 });
   tlProductHero.from(cta, { y: 20 });

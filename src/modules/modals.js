@@ -33,17 +33,72 @@ export function videoModals() {
   });
 }
 
+// export function modals() {
+//   // Normal modals
+//   const modal = $('.modal');
+//   modal.detach().appendTo('body');
+
+//   $(document).on('click', 'a[href^="#modal-"]', function (e) {
+//     e.preventDefault();
+//     const target = $(this).attr('href');
+//     $(target).addClass('is-open');
+//     $('body').addClass('no-scroll');
+//     // history.replaceState({}, document.title, window.location.href.split('#')[0]);
+//   });
+
+//   $('.modal_close').on('click', function (e) {
+//     e.preventDefault();
+//     const modal = $(this).closest('.modal');
+//     modal.removeClass('is-open');
+//     $('body').removeClass('no-scroll');
+//   });
+
+//   function showElementByHash(hash) {
+//     if (window.location.hash === hash) {
+//       const element = $(hash);
+//       if (element.length) {
+//         element.addClass('is-open');
+//         $('body').addClass('no-scroll');
+//       }
+//     }
+//   }
+
+//   $(document).ready(() => {
+//     showElementByHash('#download');
+
+//     $(window).on('hashchange', () => {
+//       showElementByHash('#download');
+//     });
+//   });
+// }
+
 export function modals() {
   // Normal modals
   const modal = $('.modal');
   modal.detach().appendTo('body');
 
-  $(document).on('click', 'a[href^="#modal-"]', function (e) {
-    e.preventDefault();
+  // $(document).on('click', 'a[href^="#"]', function (e) {
+  //   const target = $(this).attr('href');
+  //   const targetModal = $(target);
+
+  //   if (targetModal.hasClass('modal')) {
+  //     e.preventDefault();
+  //     targetModal.addClass('is-open');
+  //     $('body').addClass('no-scroll');
+  //   }
+  // });
+  $(document).on('click', 'a[href^="#"]', function (e) {
     const target = $(this).attr('href');
-    $(target).addClass('is-open');
-    $('body').addClass('no-scroll');
-    history.replaceState({}, document.title, window.location.href.split('#')[0]);
+
+    if (target !== '#') {
+      const targetModal = $(target);
+
+      if (targetModal.hasClass('modal')) {
+        e.preventDefault();
+        targetModal.addClass('is-open');
+        $('body').addClass('no-scroll');
+      }
+    }
   });
 
   $('.modal_close').on('click', function (e) {
@@ -51,5 +106,21 @@ export function modals() {
     const modal = $(this).closest('.modal');
     modal.removeClass('is-open');
     $('body').removeClass('no-scroll');
+  });
+
+  function showElementByHash(hash) {
+    const element = $(hash);
+    if (element.length && element.hasClass('modal')) {
+      element.addClass('is-open');
+      $('body').addClass('no-scroll');
+    }
+  }
+
+  $(document).ready(() => {
+    showElementByHash(window.location.hash);
+
+    $(window).on('hashchange', () => {
+      showElementByHash(window.location.hash);
+    });
   });
 }
