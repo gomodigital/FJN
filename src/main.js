@@ -126,42 +126,44 @@ if (partnersSlider.length > 0) {
   sliderHomePartners();
 }
 
-if ($('.section_hero').length > 0) {
-  animation.animateHeroSection();
-}
+window.onload = function () {
+  if ($('.section_hero').length > 0) {
+    animation.animateHeroSection();
+  }
 
-if ($('.section_intro').length > 0) {
-  animation.animateIntroSection();
-}
+  if ($('.section_intro').length > 0) {
+    animation.animateIntroSection();
+  }
 
-if ($('.section_3-highlights').length > 0) {
-  animation.animate3HighlightsSection();
-}
+  if ($('.section_3-highlights').length > 0) {
+    animation.animate3HighlightsSection();
+  }
 
-if ($('.section_highlight').length > 0) {
-  animation.animateHighlightSection();
-}
+  if ($('.section_highlight').length > 0) {
+    animation.animateHighlightSection();
+  }
 
-if ($('.section_accordion').length > 0) {
-  animation.animateAccordionItems();
-}
+  if ($('.section_accordion').length > 0) {
+    animation.animateAccordionItems();
+  }
 
-if ($('.section_product-hero').length > 0) {
-  animation.animateProductHero();
-}
+  if ($('.section_product-hero').length > 0) {
+    animation.animateProductHero();
+  }
 
-if ($('.section_product-grid').length > 0) {
-  animation.animateProductGrid();
-}
+  if ($('.section_product-grid').length > 0) {
+    animation.animateProductGrid();
+  }
 
-if ($('.section_home-featured').length > 0 || $('.section_home-career-tips').length > 0) {
-  animation.animateFeaturedArticles();
-}
+  if ($('.section_home-featured').length > 0 || $('.section_home-career-tips').length > 0) {
+    animation.animateFeaturedArticles();
+  }
 
-if ($('.section_home-partners').length > 0) {
-  animation.animatePartners();
-}
+  if ($('.section_home-partners').length > 0) {
+    animation.animatePartners();
+  }
 
-if ($('.home-footer').length > 0) {
-  animation.animateHomeFooter();
-}
+  if ($('.home-footer').length > 0) {
+    animation.animateHomeFooter();
+  }
+};

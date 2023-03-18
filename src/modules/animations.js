@@ -16,11 +16,11 @@ function createScrollTrigger(triggerElement, timeline, start = 'top 60%') {
   });
 }
 
-let headingsToSplit = $('.hero-slider_content .heading_xlarge, .hero_heading .heading_xlarge, .product-hero_header .heading_large, .highlight_content .heading_large, .section_intro .heading_xlarge, .section_intro .heading_large, .home-footer_block .heading_large, .partners_intro .heading_large');
-let typeSplit = new SplitType(headingsToSplit, { // eslint-disable-line
-  types: 'words, chars',
-  tagName: 'span',
-});
+// let headingsToSplit = $('.hero-slider_content .heading_xlarge, .hero_heading .heading_xlarge, .product-hero_header .heading_large, .highlight_content .heading_large, .section_intro .heading_xlarge, .section_intro .heading_large, .home-footer_block .heading_large, .partners_intro .heading_large');
+// let typeSplit = new SplitType(headingsToSplit, { // eslint-disable-line
+//   types: 'words, chars',
+//   tagName: 'span',
+// });
 
 export function animateLines() {
   $('.grid-line--vertical').each(function () {
@@ -126,29 +126,49 @@ export function resetMenuButton() {
 
 export function animateHeroSection() {
   $('.section_hero').each(function () {
+    let heroContainer = $(this).find('.hero_container'); // eslint-disable-line
     let heading = $(this).find('.heading_xlarge');
     let intro = $(this).find('.text_large');
     let cta = $(this).find('.cta-group');
     let playButton = $(this).find('.hero_play-button');
+    let headingSplit = new SplitType(heading, { // eslint-disable-line
+      types: 'words, chars',
+      tagName: 'span',
+    });
+    let char = heading.find('.char');
+    // gsap.set(heroContainer, { autoAlpha: 0 });
     let tl = gsap.timeline({ paused: true });
-    // if .heading_xlarge, animate it
-    if (heading.length > 0) {
-      tl.from(heading.find('.char'), { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=1');
-      gsap.set(heading, { opacity: 1 });
-    }
-    // if .text_large, animate it
-    if (intro.length > 0) {
-      tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    // if .cta-group, animate it
-    if (cta.length > 0) {
-      tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    // if .hero_play-button, animate it
-    if (playButton.length > 0) {
-      tl.from(playButton, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    createScrollTrigger($(this), tl);
+    tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0 });
+    tl.fromTo(char, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
+    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.fromTo(playButton, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.play();
+  });
+}
+
+export function animateProductHero() {
+  $('.section_product-hero').each(function () {
+    let heroContainer = $(this).find('.product-hero_container');
+    let heading = $(this).find('.heading_large');
+    let intro = $(this).find('.text_large');
+    let cta = $(this).find('.cta-group');
+    let image = $(this).find('.product-hero_image');
+    let caption = $(this).find('.text_small-caps');
+    let headingSplit = new SplitType(heading, { // eslint-disable-line
+      types: 'words, chars',
+      tagName: 'span',
+    });
+    let char = heading.find('.char');
+    gsap.set(heroContainer, { autoAlpha: 0 });
+    let tl = gsap.timeline({ paused: true });
+    tl.to(heroContainer, { autoAlpha: 1, duration: 0 });
+    tl.fromTo(char, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
+    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+    tl.fromTo(image, { clipPath: 'circle(0%)' }, { clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' }, '-=1');
+    tl.fromTo(caption, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+    tl.play();
   });
 }
 
@@ -262,37 +282,6 @@ export function animateAccordionItems() {
       tl.from(accordionItems, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)', stagger: 0.5 });
     }
     createScrollTrigger(accordionItems, tl);
-  });
-}
-
-export function animateProductHero() {
-  $('.section_product-hero').each(function () {
-    let heroContainer = $(this).find('.product-hero_container');
-    let heading = $(this).find('.heading_large');
-    let intro = $(this).find('.text_large');
-    let cta = $(this).find('.cta-group');
-    let image = $(this).find('.product-hero_image');
-    let caption = $(this).find('.text_small-caps');
-    let headingSplit = new SplitType(heading, { // eslint-disable-line
-      types: 'words, chars',
-      tagName: 'span',
-    });
-    let char = heading.find('.char');
-    gsap.set(heroContainer, { opacity: 0 });
-    gsap.set(char, { opacity: 0, yPercent: 100 });
-    gsap.set(intro, { opacity: 0, y: 20 });
-    gsap.set(cta, { opacity: 0, y: 20 });
-    gsap.set(image, { clipPath: 'circle(0%)' });
-    gsap.set(caption, { opacity: 0, y: 20 });
-    let tl = gsap.timeline();
-
-    tl.to(heroContainer, { opacity: 1, duration: 0 });
-    tl.to(char, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
-    tl.to(intro, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.to(cta, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.to(image, { clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' });
-    tl.to(caption, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.play();
   });
 }
 

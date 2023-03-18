@@ -105,6 +105,8 @@ svg {
 }
 
 .hero-slider_container,
-.product-hero_container {
+.product-hero_container,
+.hero_container {
   opacity: 0;
+  visibility: hidden;
 }
