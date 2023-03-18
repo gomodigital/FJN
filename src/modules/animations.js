@@ -124,8 +124,10 @@ export function resetMenuButton() {
   tl.to(menuButton, { duration: 0.5, opacity: 1, yPercent: 0, ease: 'power4.out' }, 0);
 }
 
+let tlHero = gsap.timeline({ defaults: { opacity: 0, duration: 0.5, ease: 'back.out(2)' } });
+
 export function animateHeroSection() {
-  let heroContainer = $('.section_hero .hero_container'); // eslint-disable-line
+  let heroContainer = $('.section_hero'); // eslint-disable-line
   let heading = $('.section_hero .heading_xlarge');
   let intro = $('.section_hero .text_large');
   let cta = $('.section_hero .cta-group');
@@ -135,16 +137,19 @@ export function animateHeroSection() {
     tagName: 'span',
   });
   let char = heading.find('.char');
-  let tl = gsap.timeline();
-  tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 });
-  tl.fromTo(char, { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
-  tl.fromTo(intro, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-  tl.fromTo(cta, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-  tl.fromTo(playButton, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+  tlHero.from(heroContainer, { autoAlpha: 0 });
+  tlHero.from(char, { yPercent: 100, stagger: { amount: 0.25 } }, '+=2');
+  tlHero.from(intro, { y: 20 }, '-=1');
+  tlHero.from(cta, { y: 20 }, '-=0.5');
+  if (playButton.length > 0) {
+    tlHero.from(playButton, { y: 20 }, '-=0.5');
+  }
 }
 
+let tlProductHero = gsap.timeline({ defaults: { opacity: 0, duration: 0.5, ease: 'back.out(2)' } });
+
 export function animateProductHero() {
-  let heroContainer = $('.section_product-hero .product-hero_container');
+  let heroContainer = $('.section_product-hero');
   let heading = $('.section_product-hero .heading_large');
   let intro = $('.section_product-hero .text_large');
   let cta = $('.section_product-hero .cta-group');
@@ -155,13 +160,13 @@ export function animateProductHero() {
     tagName: 'span',
   });
   let char = heading.find('.char');
-  let tl = gsap.timeline();
-  tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 });
-  tl.fromTo(char, { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
-  tl.fromTo(intro, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-  tl.fromTo(cta, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-  tl.fromTo(image, { autoAlpha: 0, clipPath: 'circle(0%)' }, { autoAlpha: 1, clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' }, '-=1');
-  tl.fromTo(caption, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+  // let tl = gsap.timeline({ defaults: { opacity: 0, duration: 0.5, ease: 'back.out(2)' } });
+  tlProductHero.from(heroContainer, { autoAlpha: 0 });
+  tlProductHero.from(char, { yPercent: 100, stagger: { amount: 0.25 } });
+  tlProductHero.from(intro, { y: 20 });
+  tlProductHero.from(cta, { y: 20 });
+  tlProductHero.from(image, { clipPath: 'circle(0%)', scale: 1.1, duration: 1 });
+  tlProductHero.from(caption, { y: 20 });
 }
 
 export function animateIntroSection() {

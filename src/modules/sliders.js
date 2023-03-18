@@ -1,6 +1,7 @@
 import Splide from '@splidejs/splide';
 import '@splidejs/splide/css/core';
 import { gsap } from 'gsap'; // eslint-disable-line
+import SplitType from 'split-type';
 import Swiper, { Navigation, Autoplay, EffectFade } from 'swiper'; // eslint-disable-line
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -32,19 +33,23 @@ export function sliderHomeHero() {
 
   function setupAnimation(slide) {
     let slideContainer = slide.querySelector('.hero-slider_container');
-    let heading = slide.querySelectorAll('.heading_xlarge .char');
+    let heading = slide.querySelector('.heading_xlarge');
+    let headingSplit = new SplitType(heading, { // eslint-disable-line
+      types: 'words, chars',
+      tagName: 'span',
+    });
+    let char = slide.querySelectorAll('.char');
     let intro = slide.querySelector('.hero-slider_intro');
     let cta = slide.querySelector('.button');
     let imageContainer = slide.querySelector('.hero-slider_image-container');
     let image = slide.querySelector('.hero-slider_image');
     let tl = gsap.timeline({ paused: true });
-    gsap.set(slideContainer, { autoAlpha: 0 });
-    tl.to(slideContainer, { autoAlpha: 1, duration: 1 });
-    tl.fromTo(heading, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, 0);
-    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.fromTo(imageContainer, { clipPath: 'circle(0%)' }, { clipPath: 'circle(100%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
-    tl.fromTo(image, { scale: 2 }, { scale: 1, duration: 1.5, ease: 'power4.out' }, '-=1.5');
+    tl.from(slideContainer, { autoAlpha: 0 });
+    tl.from(char, { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
+    tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
+    tl.from(image, { scale: 2, duration: 1.5, ease: 'power4.out' }, '-=1.5');
     slide.animation = tl;
   }
 

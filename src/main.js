@@ -114,10 +114,6 @@ if (mapPartners.length > 0) {
   animation.animateMap();
 }
 
-if (heroSlider.length > 0) {
-  sliderHomeHero();
-}
-
 if (programsSlider.length > 0) {
   sliderHomePrograms();
 }
@@ -126,19 +122,23 @@ if (partnersSlider.length > 0) {
   sliderHomePartners();
 }
 
-window.onload = function () {
+window.onload = (event) => { // eslint-disable-line
+  if (heroSlider.length > 0) {
+    setTimeout(() => {
+      sliderHomeHero();
+    }, 500);
+  }
+
   if ($('.section_hero').length > 0) {
-    animation.animateHeroSection();
-    // setTimeout(() => {
-    //   animation.animateHeroSection();
-    // }, 100);
+    setTimeout(() => {
+      animation.animateHeroSection();
+    }, 500);
   }
 
   if ($('.section_product-hero').length > 0) {
-    animation.animateProductHero();
-    // setTimeout(() => {
-    //   animation.animateProductHero();
-    // }, 100);
+    setTimeout(() => {
+      animation.animateProductHero();
+    }, 500);
   }
 
   if ($('.section_intro').length > 0) {

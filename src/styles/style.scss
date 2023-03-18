@@ -45,16 +45,6 @@
   clip-path: circle(100%);
 }
 
-.section_hero .heading_xlarge,
-.section_hero .heading_large,
-.section_intro .heading_xlarge,
-.section_intro .heading_large,
-.section_product-hero .heading_large,
-.hero-slider_content .heading_xlarge,
-.home-footer .heading_large {
-  // opacity: 0;
-}
-
 html.w-editor .heading_xlarge,
 html.w-editor .heading_large {
   opacity: 1;
@@ -68,7 +58,7 @@ html.w-editor .heading_large {
 
 .highlight-item_image,
 .product-hero_image {
-  clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: circle(100%);
 }
 
 .highlight_image {
@@ -105,17 +95,7 @@ svg {
 }
 
 .hero-slider_container,
-.section_product-hero .product-hero_container,
-.section_product-hero .heading_large .char,
-.section_product-hero .text_large,
-.section_product-hero .cta-group,
-.section_product-hero .product-hero_image,
-.section_product-hero .text_small-caps,
-.section_hero .hero_container,
-.section_hero .text_large,
-.section_hero .heading_xlarge .char,
-.section_hero .cta-group,
-.section_hero .hero_play-button {
-  opacity: 0;
+.section_hero,
+.section_product-hero {
   visibility: hidden;
 }
