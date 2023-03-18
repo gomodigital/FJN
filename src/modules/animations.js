@@ -125,51 +125,43 @@ export function resetMenuButton() {
 }
 
 export function animateHeroSection() {
-  $('.section_hero').each(function () {
-    let heroContainer = $(this).find('.hero_container'); // eslint-disable-line
-    let heading = $(this).find('.heading_xlarge');
-    let intro = $(this).find('.text_large');
-    let cta = $(this).find('.cta-group');
-    let playButton = $(this).find('.hero_play-button');
-    let headingSplit = new SplitType(heading, { // eslint-disable-line
-      types: 'words, chars',
-      tagName: 'span',
-    });
-    let char = heading.find('.char');
-    gsap.set(heroContainer, { autoAlpha: 0 });
-    let tl = gsap.timeline({ paused: true });
-    tl.to(heroContainer, { autoAlpha: 1, duration: 0 });
-    tl.fromTo(char, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
-    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.fromTo(playButton, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.play();
+  let heroContainer = $('.section_hero .hero_container'); // eslint-disable-line
+  let heading = $('.section_hero .heading_xlarge');
+  let intro = $('.section_hero .text_large');
+  let cta = $('.section_hero .cta-group');
+  let playButton = $('.section_hero .hero_play-button');
+  let headingSplit = new SplitType(heading, { // eslint-disable-line
+    types: 'words, chars',
+    tagName: 'span',
   });
+  let char = heading.find('.char');
+  let tl = gsap.timeline();
+  tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 });
+  tl.fromTo(char, { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
+  tl.fromTo(intro, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+  tl.fromTo(cta, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+  tl.fromTo(playButton, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
 }
 
 export function animateProductHero() {
-  $('.section_product-hero').each(function () {
-    let heroContainer = $(this).find('.product-hero_container');
-    let heading = $(this).find('.heading_large');
-    let intro = $(this).find('.text_large');
-    let cta = $(this).find('.cta-group');
-    let image = $(this).find('.product-hero_image');
-    let caption = $(this).find('.text_small-caps');
-    let headingSplit = new SplitType(heading, { // eslint-disable-line
-      types: 'words, chars',
-      tagName: 'span',
-    });
-    let char = heading.find('.char');
-    gsap.set(heroContainer, { autoAlpha: 0 });
-    let tl = gsap.timeline({ paused: true });
-    tl.to(heroContainer, { autoAlpha: 1, duration: 0 });
-    tl.fromTo(char, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
-    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-    tl.fromTo(image, { clipPath: 'circle(0%)' }, { clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' }, '-=1');
-    tl.fromTo(caption, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
-    tl.play();
+  let heroContainer = $('.section_product-hero .product-hero_container');
+  let heading = $('.section_product-hero .heading_large');
+  let intro = $('.section_product-hero .text_large');
+  let cta = $('.section_product-hero .cta-group');
+  let image = $('.section_product-hero .product-hero_image');
+  let caption = $('.section_product-hero .text_small-caps');
+  let headingSplit = new SplitType(heading, { // eslint-disable-line
+    types: 'words, chars',
+    tagName: 'span',
   });
+  let char = heading.find('.char');
+  let tl = gsap.timeline();
+  tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1 });
+  tl.fromTo(char, { autoAlpha: 0, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
+  tl.fromTo(intro, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+  tl.fromTo(cta, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
+  tl.fromTo(image, { autoAlpha: 0, clipPath: 'circle(0%)' }, { autoAlpha: 1, clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' }, '-=1');
+  tl.fromTo(caption, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
 }
 
 export function animateIntroSection() {

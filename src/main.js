@@ -128,9 +128,17 @@ if (partnersSlider.length > 0) {
 
 window.onload = function () {
   if ($('.section_hero').length > 0) {
-    setTimeout(() => {
-      animation.animateHeroSection();
-    }, 500);
+    animation.animateHeroSection();
+    // setTimeout(() => {
+    //   animation.animateHeroSection();
+    // }, 100);
+  }
+
+  if ($('.section_product-hero').length > 0) {
+    animation.animateProductHero();
+    // setTimeout(() => {
+    //   animation.animateProductHero();
+    // }, 100);
   }
 
   if ($('.section_intro').length > 0) {
@@ -147,10 +155,6 @@ window.onload = function () {
 
   if ($('.section_accordion').length > 0) {
     animation.animateAccordionItems();
-  }
-
-  if ($('.section_product-hero').length > 0) {
-    animation.animateProductHero();
   }
 
   if ($('.section_product-grid').length > 0) {
