@@ -32,6 +32,18 @@ $('.copyright-year').text(currentYear);
 // Open external links in a new tab
 $('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
+// Find the element with class '.arrow-button.is-library-link'
+const libraryLink = $('.arrow-button.is-library-link');
+const libraryLinkContainer = $('.featured-articles_container');
+const newsletterCTA = $('.newsletter-cta.is-home');
+// When the viewport width is less than 767px, detach libraryLink and place it after libraryLinkContainer
+if ($(window).width() < 478) {
+  libraryLink.detach().insertAfter(libraryLinkContainer);
+  libraryLink.css('padding-left', '1.5rem');
+  newsletterCTA.detach().insertAfter(libraryLink);
+  newsletterCTA.css('margin', '2rem 0 0 0');
+}
+
 menuButton.on('click', function (e) {
   e.preventDefault();
   nav.fadeIn(100);

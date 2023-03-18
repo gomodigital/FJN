@@ -90,12 +90,21 @@ svg {
   height: 100%;
 }
 
-// .programs-slider .swiper-wrapper {
-//   display: flex;
-//   align-items: stretch; /* Add this line to make all slides have the same height */
-// }
+@media (max-width: 1288px) {
+  .section_home-hero {
+    max-height: none;
+  }
+}
 
-// .programs-slider .swiper-slide {
-//   height: 100%;
-//   width: calc(21.55% - 8px); /* Adjust the width based on the spaceBetween */
-// }
+// between 991px and 1288px, .hero-slider_image-wrapper is 40% of the width of the screen
+@media (min-width: 991px) and (max-width: 1295px) {
+  .hero-slider_image-wrapper {
+    width: 40%;
+    margin-right: 5%;
+  }
+}
+
+.hero-slider_container,
+.product-hero_container {
+  opacity: 0;
+}

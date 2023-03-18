@@ -15,7 +15,7 @@ export function sliderHomeHero() {
       crossFade: true,
     },
     autoplay: {
-      delay: 5000,
+      delay: 6000,
       disableOnInteraction: true,
     },
     navigation: {
@@ -31,22 +31,20 @@ export function sliderHomeHero() {
   });
 
   function setupAnimation(slide) {
+    let slideContainer = slide.querySelector('.hero-slider_container');
     let heading = slide.querySelectorAll('.heading_xlarge .char');
     let intro = slide.querySelector('.hero-slider_intro');
     let cta = slide.querySelector('.button');
     let imageContainer = slide.querySelector('.hero-slider_image-container');
     let image = slide.querySelector('.hero-slider_image');
-    gsap.set(heading, { autoAlpha: 0, yPercent: 100 });
-    gsap.set(intro, { autoAlpha: 0, y: 20 });
-    gsap.set(cta, { autoAlpha: 0, y: 20 });
-    gsap.set(imageContainer, { clipPath: 'circle(0%)' });
-    gsap.set(image, { scale: 2 });
     let tl = gsap.timeline({ paused: true });
-    tl.to(heading, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
-    tl.to(intro, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.to(cta, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
-    tl.to(imageContainer, { clipPath: 'circle(100%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
-    tl.to(image, { scale: 1, duration: 1.5, ease: 'power4.out' }, '-=1.5');
+    gsap.set(slideContainer, { autoAlpha: 0 });
+    tl.to(slideContainer, { autoAlpha: 1, duration: 1 });
+    tl.fromTo(heading, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, 0);
+    tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+    tl.fromTo(imageContainer, { clipPath: 'circle(0%)' }, { clipPath: 'circle(100%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
+    tl.fromTo(image, { scale: 2 }, { scale: 1, duration: 1.5, ease: 'power4.out' }, '-=1.5');
     slide.animation = tl;
   }
 

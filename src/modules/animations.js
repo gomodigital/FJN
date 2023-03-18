@@ -267,34 +267,32 @@ export function animateAccordionItems() {
 
 export function animateProductHero() {
   $('.section_product-hero').each(function () {
+    let heroContainer = $(this).find('.product-hero_container');
     let heading = $(this).find('.heading_large');
     let intro = $(this).find('.text_large');
     let cta = $(this).find('.cta-group');
-    let tl = gsap.timeline({ paused: true });
     let image = $(this).find('.product-hero_image');
     let caption = $(this).find('.text_small-caps');
-    // if heading_large, animate it
-    if (heading.length > 0) {
-      tl.from(heading.find('.char'), { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
-      gsap.set(heading, { opacity: 1 });
-    }
-    // if text_large, animate it
-    if (intro.length > 0) {
-      tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    // if .cta-group, animate it
-    if (cta.length > 0) {
-      tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    // if .product-hero_image, animate it
-    if (image.length > 0) {
-      tl.from(image, { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' });
-    }
-    // if .text_small-caps, animate it
-    if (caption.length > 0) {
-      tl.from(caption, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' });
-    }
-    createScrollTrigger($(this), tl);
+    let headingSplit = new SplitType(heading, { // eslint-disable-line
+      types: 'words, chars',
+      tagName: 'span',
+    });
+    let char = heading.find('.char');
+    gsap.set(heroContainer, { opacity: 0 });
+    gsap.set(char, { opacity: 0, yPercent: 100 });
+    gsap.set(intro, { opacity: 0, y: 20 });
+    gsap.set(cta, { opacity: 0, y: 20 });
+    gsap.set(image, { clipPath: 'circle(0%)' });
+    gsap.set(caption, { opacity: 0, y: 20 });
+    let tl = gsap.timeline();
+
+    tl.to(heroContainer, { opacity: 1, duration: 0 });
+    tl.to(char, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
+    tl.to(intro, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
+    tl.to(cta, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
+    tl.to(image, { clipPath: 'circle(100%)', scale: 1.1, duration: 1, ease: 'back.out(2)' });
+    tl.to(caption, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' });
+    tl.play();
   });
 }
 
