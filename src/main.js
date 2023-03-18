@@ -14,7 +14,7 @@ import './styles/style.scss';
 const currentYear = new Date().getFullYear();
 const accordionElements = $('.accordion-wrapper');
 const faqsSection = $('.section_faqs');
-const librarySection = $('.section_library-header');
+// const librarySection = $('.section_library-header');
 const videoModalsElements = $('.modal-video');
 const modalsElements = $('.modal');
 const mapPartners = $('.section_home-partners');
@@ -67,7 +67,7 @@ languageButton.on('click', function (e) {
   }, 500);
 });
 
-animation.animateLines();
+// animation.animateLines();
 
 // const lottieContainer = document.querySelector('.lottie');
 // const lottieAnimation = lottie.loadAnimation({
@@ -98,7 +98,8 @@ if (faqsSection.length > 0) {
   faqs();
 }
 
-if (librarySection.length > 0) {
+// if body has class 'library', run library function
+if ($('body').hasClass('library')) {
   library();
 }
 
