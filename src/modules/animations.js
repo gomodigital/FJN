@@ -16,11 +16,11 @@ function createScrollTrigger(triggerElement, timeline, start = 'top 60%') {
   });
 }
 
-// let headingsToSplit = $('.hero-slider_content .heading_xlarge, .hero_heading .heading_xlarge, .product-hero_header .heading_large, .highlight_content .heading_large, .section_intro .heading_xlarge, .section_intro .heading_large, .home-footer_block .heading_large, .partners_intro .heading_large');
-// let typeSplit = new SplitType(headingsToSplit, { // eslint-disable-line
-//   types: 'words, chars',
-//   tagName: 'span',
-// });
+let headingsToSplit = $('.hero-slider_content .heading_xlarge, .hero_heading .heading_xlarge, .product-hero_header .heading_large, .highlight_content .heading_large, .section_intro .heading_xlarge, .section_intro .heading_large, .home-footer_block .heading_large, .partners_intro .heading_large');
+let typeSplit = new SplitType(headingsToSplit, { // eslint-disable-line
+  types: 'words, chars',
+  tagName: 'span',
+});
 
 export function animateLines() {
   $('.grid-line--vertical').each(function () {
@@ -136,9 +136,9 @@ export function animateHeroSection() {
       tagName: 'span',
     });
     let char = heading.find('.char');
-    // gsap.set(heroContainer, { autoAlpha: 0 });
+    gsap.set(heroContainer, { autoAlpha: 0 });
     let tl = gsap.timeline({ paused: true });
-    tl.fromTo(heroContainer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0 });
+    tl.to(heroContainer, { autoAlpha: 1, duration: 0 });
     tl.fromTo(char, { opacity: 0, yPercent: 100 }, { opacity: 1, yPercent: 0, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } }, '+=2');
     tl.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=1');
     tl.fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');

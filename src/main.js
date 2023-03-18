@@ -128,7 +128,9 @@ if (partnersSlider.length > 0) {
 
 window.onload = function () {
   if ($('.section_hero').length > 0) {
-    animation.animateHeroSection();
+    setTimeout(() => {
+      animation.animateHeroSection();
+    }, 500);
   }
 
   if ($('.section_intro').length > 0) {
