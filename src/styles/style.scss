@@ -23,9 +23,9 @@
 }
 
 /* .button-close {
-  clip-path: circle(0%);
-  transition: clip-path 0.5s ease;
-} */
+    clip-path: circle(0%);
+    transition: clip-path 0.5s ease;
+  } */
 
 .button-close:hover {
   transform: scale(1.2);
@@ -86,13 +86,21 @@ svg {
   }
 }
 
-// between 991px and 1288px, .hero-slider_image-wrapper is 40% of the width of the screen
-@media (min-width: 991px) and (max-width: 1295px) {
-  .hero-slider_image-wrapper {
-    width: 40%;
-    margin-right: 5%;
+// if viewport height is less that 720px
+@media (max-height: 720px) {
+  .section_home-hero {
+    height: auto;
+    max-height: none;
   }
 }
+
+// between 991px and 1288px, .hero-slider_image-wrapper is 40% of the width of the screen
+// @media (min-width: 991px) and (max-width: 1295px) {
+//   .hero-slider_image-wrapper {
+//     width: 40%;
+//     margin-right: 5%;
+//   }
+// }
 
 .hero-slider_container,
 .section_hero,

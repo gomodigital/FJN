@@ -25,47 +25,9 @@ const menuButton = $('#main-menu-button');
 const closeMenu = $('#main-menu-close');
 const nav = $('.nav_wrapper');
 const languageButton = $('.button-language');
-
-// Set the current year in the footer
-$('.copyright-year').text(currentYear);
-
-// Open external links in a new tab
-$('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
-
-// Find the element with class '.arrow-button.is-library-link'
 const libraryLink = $('.arrow-button.is-library-link');
 const libraryLinkContainer = $('.featured-articles_container');
 const newsletterCTA = $('.newsletter-cta.is-home');
-// When the viewport width is less than 767px, detach libraryLink and place it after libraryLinkContainer
-if ($(window).width() < 478) {
-  libraryLink.detach().insertAfter(libraryLinkContainer);
-  libraryLink.css('padding-left', '1.5rem');
-  newsletterCTA.detach().insertAfter(libraryLink);
-  newsletterCTA.css('margin', '2rem 0 0 0');
-}
-
-menuButton.on('click', function (e) {
-  e.preventDefault();
-  nav.fadeIn(100);
-  $('body').addClass('no-scroll');
-  animation.animateMenu();
-});
-
-closeMenu.on('click', function (e) {
-  e.preventDefault();
-  nav.fadeOut(100);
-  $('body').removeClass('no-scroll');
-});
-
-languageButton.on('click', function (e) {
-  e.preventDefault();
-  let url = $(this).attr('href');
-  let innerCircle = $(this).find('.button-language_switch-circle');
-  innerCircle.css('transform', 'translateX(100%)');
-  setTimeout(function () {
-    window.location.href = url;
-  }, 500);
-});
 
 // animation.animateLines();
 
@@ -90,36 +52,74 @@ languageButton.on('click', function (e) {
 //   lottieAnimation.play();
 // });
 
-if (accordionElements.length > 0) {
-  accordion();
-}
-
-if (faqsSection.length > 0) {
-  faqs();
-}
-
-// if body has class 'library', run library function
-if ($('body').hasClass('library')) {
-  library();
-}
-
-if (videoModalsElements.length > 0) {
-  videoModals();
-}
-
-if (modalsElements.length > 0) {
-  modals();
-}
-
-if (mapPartners.length > 0) {
-  animation.animateMap();
-}
-
-if (partnersSlider.length > 0) {
-  sliderHomePartners();
-}
-
 window.addEventListener('load', (event) => { // eslint-disable-line
+  // Set the current year in the footer
+  $('.copyright-year').text(currentYear);
+
+  // Open external links in a new tab
+  $('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
+
+  animation.animateLines();
+
+  // When the viewport width is less than 767px, detach libraryLink and place it after libraryLinkContainer
+  if ($(window).width() < 478) {
+    libraryLink.detach().insertAfter(libraryLinkContainer);
+    libraryLink.css('padding-left', '1.5rem');
+    newsletterCTA.detach().insertAfter(libraryLink);
+    newsletterCTA.css('margin', '2rem 0 0 0');
+  }
+
+  menuButton.on('click', function (e) {
+    e.preventDefault();
+    nav.fadeIn(100);
+    $('body').addClass('no-scroll');
+    animation.animateMenu();
+  });
+
+  closeMenu.on('click', function (e) {
+    e.preventDefault();
+    nav.fadeOut(100);
+    $('body').removeClass('no-scroll');
+  });
+
+  languageButton.on('click', function (e) {
+    e.preventDefault();
+    let url = $(this).attr('href');
+    let innerCircle = $(this).find('.button-language_switch-circle');
+    innerCircle.css('transform', 'translateX(100%)');
+    setTimeout(function () {
+      window.location.href = url;
+    }, 500);
+  });
+
+  if (accordionElements.length > 0) {
+    accordion();
+  }
+
+  if (faqsSection.length > 0) {
+    faqs();
+  }
+
+  // if body has class 'library', run library function
+  if ($('body').hasClass('library')) {
+    library();
+  }
+
+  if (videoModalsElements.length > 0) {
+    videoModals();
+  }
+
+  if (modalsElements.length > 0) {
+    modals();
+  }
+
+  if (mapPartners.length > 0) {
+    animation.animateMap();
+  }
+
+  if (partnersSlider.length > 0) {
+    sliderHomePartners();
+  }
 
   if (programsSlider.length > 0) {
     sliderHomePrograms();

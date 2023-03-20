@@ -2,72 +2,134 @@ import Splide from '@splidejs/splide';
 import '@splidejs/splide/css/core';
 import { gsap } from 'gsap'; // eslint-disable-line
 import SplitType from 'split-type';
-import Swiper, { Navigation, Autoplay, EffectFade } from 'swiper'; // eslint-disable-line
-import 'swiper/css';
-import 'swiper/css/effect-fade';
+// import Swiper, { Navigation, Autoplay, EffectFade } from 'swiper'; // eslint-disable-line
+// import 'swiper/css';
+// import 'swiper/css/effect-fade';
 
-Swiper.use([Navigation, Autoplay, EffectFade]);
+// Swiper.use([Navigation, Autoplay, EffectFade]);
 
 export function sliderHomeHero() {
-  const swiper = new Swiper('.hero-slider .swiper', { // eslint-disable-line
-    loop: true,
-    effect: 'fade',
-    fadeEffect: {
-      crossFade: true,
-    },
-    autoplay: {
-      delay: 6000,
-      disableOnInteraction: true,
-    },
-    navigation: {
-      nextEl: '.hero-slider_nav .swiper-button-next',
-      prevEl: '.hero-slider_nav .swiper-button-prev',
-    },
-    on: {
-      slideChangeTransitionEnd: function () {
-        this.slides[this.previousIndex].animation.progress(0).pause(); // Reset the animation on the previous slide
-        this.slides[this.activeIndex].animation.restart(); // Restart the animation on the active slide
-      },
-    },
-  });
+  const homeHeroSlider = new Splide('.hero-slider', {
+    type: 'loop',
+    // rewind: true,
+    // pagination: false,
+    autoplay: true,
+    speed: 0,
+    interval: 6000,
+  }).mount();
 
-  function setupAnimation(slide) {
-    let slideContainer = slide.querySelector('.hero-slider_container');
-    let heading = slide.querySelector('.heading_xlarge');
-    let headingSplit = new SplitType(heading, { // eslint-disable-line
-      types: 'words, chars',
-      tagName: 'span',
-    });
-    let char = slide.querySelectorAll('.char');
-    let intro = slide.querySelector('.hero-slider_intro');
-    let cta = slide.querySelector('.button');
-    let imageContainer = slide.querySelector('.hero-slider_image-container');
-    let image = slide.querySelector('.hero-slider_image');
-    let tl = gsap.timeline({ paused: true });
-    tl.from(slideContainer, { autoAlpha: 0 });
-    tl.from(char, { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
-    tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
-    tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
-    tl.from(image, { scale: 2, duration: 1.5, ease: 'power4.out' }, '-=1.5');
-    slide.animation = tl;
-  }
-
-  swiper.on('init', function () {
-    this.slides.forEach((slide, index) => { // eslint-disable-line
-      setupAnimation(slide);
-    });
-  });
-
-  // Manually trigger the init event if the swiper instance is already initialized
-  if (swiper.initialized) {
-    swiper.emit('init');
-  }
-
-  // Animate the initial slide after a short delay
+  // Animate the initial visible slide
   setTimeout(() => {
-    swiper.slides[swiper.activeIndex].animation.play();
-  }, 1000);
+    animateSlide(homeHeroSlider.Components.Elements.slides[homeHeroSlider.index]);
+  }, 50);
+
+  homeHeroSlider.on('active', (slide) => {
+    animateSlide(slide.slide);
+  });
+
+  homeHeroSlider.on('inactive', (slide) => {
+    resetAnimation(slide.slide);
+  });
+
+  function animateSlide(slide) {
+    const slideId = slide.dataset.slideId;
+
+    if (!slide.animation) {
+      slide.animation = {};
+    }
+
+    if (!slide.animation[slideId]) {
+      let slideContainer = slide.querySelector('.hero-slider_container');
+      let heading = slide.querySelector('.heading_xlarge');
+      let headingSplit = new SplitType(heading, { // eslint-disable-line
+        types: 'words, chars',
+        tagName: 'span',
+      });
+      let char = slide.querySelectorAll('.char');
+      let intro = slide.querySelector('.hero-slider_intro');
+      let cta = slide.querySelector('.button');
+      let imageContainer = slide.querySelector('.hero-slider_image-container');
+      let image = slide.querySelector('.hero-slider_image');
+      let tl = gsap.timeline();
+
+      tl.from(slideContainer, { autoAlpha: 0 });
+      tl.from(char, { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
+      tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+      tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+      tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
+      tl.from(image, { scale: 2, duration: 1.5, ease: 'power4.out' }, '-=1.5');
+
+      slide.animation[slideId] = tl;
+    }
+
+    slide.animation[slideId].progress(0).play();
+  }
+
+  function resetAnimation(slide) {
+    const slideId = slide.dataset.slideId;
+    if (slide.animation && slide.animation[slideId]) {
+      slide.animation[slideId].progress(0).pause(); // Restart the stored animation
+    }
+  }
+  // const swiper = new Swiper('.hero-slider .swiper', { // eslint-disable-line
+  //   loop: true,
+  //   effect: 'fade',
+  //   fadeEffect: {
+  //     crossFade: true,
+  //   },
+  //   autoplay: {
+  //     delay: 6000,
+  //     disableOnInteraction: true,
+  //   },
+  //   navigation: {
+  //     nextEl: '.hero-slider_nav .swiper-button-next',
+  //     prevEl: '.hero-slider_nav .swiper-button-prev',
+  //   },
+  //   on: {
+  //     slideChangeTransitionEnd: function () {
+  //       this.slides[this.previousIndex].animation.progress(0).pause(); // Reset the animation on the previous slide
+  //       this.slides[this.activeIndex].animation.restart(); // Restart the animation on the active slide
+  //     },
+  //   },
+  // });
+
+  // function setupAnimation(slide) {
+  //   let slideContainer = slide.querySelector('.hero-slider_container');
+  //   let heading = slide.querySelector('.heading_xlarge');
+  //   let headingSplit = new SplitType(heading, { // eslint-disable-line
+  //     types: 'words, chars',
+  //     tagName: 'span',
+  //   });
+  //   let char = slide.querySelectorAll('.char');
+  //   let intro = slide.querySelector('.hero-slider_intro');
+  //   let cta = slide.querySelector('.button');
+  //   let imageContainer = slide.querySelector('.hero-slider_image-container');
+  //   let image = slide.querySelector('.hero-slider_image');
+  //   let tl = gsap.timeline({ paused: true });
+  //   tl.from(slideContainer, { autoAlpha: 0 });
+  //   tl.from(char, { opacity: 0, yPercent: 100, duration: 0.5, ease: 'back.out(2)', stagger: { amount: 0.25 } });
+  //   tl.from(intro, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+  //   tl.from(cta, { opacity: 0, y: 20, duration: 0.5, ease: 'back.out(2)' }, '-=0.5');
+  //   tl.from(imageContainer, { clipPath: 'circle(0%)', duration: 1.5, ease: 'back.out(2)' }, '-=1.5');
+  //   tl.from(image, { scale: 2, duration: 1.5, ease: 'power4.out' }, '-=1.5');
+  //   slide.animation = tl;
+  // }
+
+  // swiper.on('init', function () {
+  //   this.slides.forEach((slide, index) => { // eslint-disable-line
+  //     setupAnimation(slide);
+  //   });
+  // });
+
+  // // Manually trigger the init event if the swiper instance is already initialized
+  // if (swiper.initialized) {
+  //   swiper.emit('init');
+  // }
+
+  // // Animate the initial slide after a short delay
+  // setTimeout(() => {
+  //   swiper.slides[swiper.activeIndex].animation.play();
+  // }, 1000);
 }
 
 // export function sliderHomePrograms() {
