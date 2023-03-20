@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import $ from 'jquery';
 import SplitType from 'split-type';
 
-// gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 // Main scroll trigger
 function createScrollTrigger(triggerElement, timeline, start = 'top 60%') {
