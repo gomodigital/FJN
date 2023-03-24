@@ -28,8 +28,7 @@ const libraryLink = $('.arrow-button.is-library-link');
 const libraryLinkContainer = $('.featured-articles_container');
 const newsletterCTA = $('.newsletter-cta.is-home');
 
-document.addEventListener('DOMContentLoaded', function () {
-  alert('Hello, world!');
+$(document).ready(function () {
   // TOREMOVE
   $('a').each(function () {
     var old_url = $(this).attr('href');

@@ -209,7 +209,7 @@ export function animate3HighlightsSection() {
     let tl = gsap.timeline({ paused: true });
     // if .highlight-item_image, animate it
     if (image.length > 0) {
-      tl.from(image, { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)', scale: 1.5, duration: 1, ease: 'back.out(2)' });
+      tl.from(image, { clipPath: 'circle(0%)', scale: 1.5, duration: 1, ease: 'back.out(2)' });
     }
     // if .heading_medium, animate it
     if (heading.length > 0) {
