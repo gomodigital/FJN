@@ -17,9 +17,9 @@ const faqsSection = $('.section_faqs');
 const videoModalsElements = $('.modal-video');
 const modalsElements = $('.modal');
 const mapPartners = $('.section_home-partners');
-const heroSlider = $('.hero-slider');
-const programsSlider = $('.programs-slider');
-const partnersSlider = $('.partners-slider');
+const heroSlider = $('.hero-slider'); // eslint-disable-line
+const programsSlider = $('.programs-slider'); // eslint-disable-line
+const partnersSlider = $('.partners-slider'); // eslint-disable-line
 const menuButton = $('#main-menu-button');
 const closeMenu = $('#main-menu-close');
 const nav = $('.nav_wrapper');
@@ -29,6 +29,7 @@ const libraryLinkContainer = $('.featured-articles_container');
 const newsletterCTA = $('.newsletter-cta.is-home');
 
 document.addEventListener('DOMContentLoaded', function () {
+  alert('Hello, world!');
   // TOREMOVE
   $('a').each(function () {
     var old_url = $(this).attr('href');
