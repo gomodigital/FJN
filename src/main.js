@@ -27,6 +27,8 @@ const languageButton = $('.button-language');
 const libraryLink = $('.arrow-button.is-library-link');
 const libraryLinkContainer = $('.featured-articles_container');
 const newsletterCTA = $('.newsletter-cta.is-home');
+// const searchButton = $('.button-search');
+const searchCloseButton = $('.button-close-search');
 
 $(document).ready(function () {
   // TOREMOVE
@@ -77,6 +79,29 @@ $(document).ready(function () {
       window.location.href = url;
     }, 500);
   });
+
+  // searchButton.on('click', function (e) {
+  //   e.preventDefault();
+  //   $('body').addClass('no-scroll');
+  // });
+
+  // when input with class .global-search_input is getting typed, add class .no-scroll to body; if input is empty, remove class .no-scroll
+  $('.global-search_input').on('input', function () {
+    if ($(this).val() === '') {
+      $('body').removeClass('no-scroll');
+    } else {
+      $('body').addClass('no-scroll');
+    }
+  });
+
+  searchCloseButton.on('click', function (e) {
+    e.preventDefault();
+    $('body').removeClass('no-scroll');
+  });
+
+  // $('body').on('click', function () {
+  //   $(this).removeClass('no-scroll');
+  // });
 
   if (accordionElements.length > 0) {
     accordion();
