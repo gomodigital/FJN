@@ -14,7 +14,6 @@ import './styles/style.scss';
 const currentYear = new Date().getFullYear();
 const accordionElements = $('.accordion-wrapper');
 const faqsSection = $('.section_faqs');
-// const librarySection = $('.section_library-header');
 const videoModalsElements = $('.modal-video');
 const modalsElements = $('.modal');
 const mapPartners = $('.section_home-partners');
@@ -29,30 +28,7 @@ const libraryLink = $('.arrow-button.is-library-link');
 const libraryLinkContainer = $('.featured-articles_container');
 const newsletterCTA = $('.newsletter-cta.is-home');
 
-// animation.animateLines();
-
-// const lottieContainer = document.querySelector('.lottie');
-// const lottieAnimation = lottie.loadAnimation({
-//   container: lottieContainer,
-//   renderer: 'svg',
-//   loop: false,
-//   autoplay: false,
-//   path: 'https://uploads-ssl.webflow.com/6384edcb8a540581e11a078d/640b6d66d086fdca1ca42584_menu-button.json',
-// });
-
-// lottieContainer.addEventListener('mouseenter', function () {
-//   lottieAnimation.setDirection(1);
-//   lottieAnimation.setSpeed(2);
-//   lottieAnimation.play();
-// });
-
-// lottieContainer.addEventListener('mouseleave', function () {
-//   lottieAnimation.setDirection(-1);
-//   lottieAnimation.setSpeed(2);
-//   lottieAnimation.play();
-// });
-
-window.addEventListener('load', (event) => { // eslint-disable-line
+document.addEventListener('DOMContentLoaded', function () {
   // TOREMOVE
   $('a').each(function () {
     var old_url = $(this).attr('href');
@@ -66,15 +42,12 @@ window.addEventListener('load', (event) => { // eslint-disable-line
       }
     }
   });
+
   // Set the current year in the footer
   $('.copyright-year').text(currentYear);
-
   // Open external links in a new tab
   $('a[href^="http"]:not([href*="' + window.location.hostname + '"])').attr('target', '_blank');
 
-  animation.animateLines();
-
-  // When the viewport width is less than 767px, detach libraryLink and place it after libraryLinkContainer
   if ($(window).width() < 478) {
     libraryLink.detach().insertAfter(libraryLinkContainer);
     libraryLink.css('padding-left', '1.5rem');
@@ -139,9 +112,7 @@ window.addEventListener('load', (event) => { // eslint-disable-line
   }
 
   if (heroSlider.length > 0) {
-    setTimeout(() => {
-      sliderHomeHero();
-    }, 500);
+    sliderHomeHero();
   }
 
   if ($('.section_hero').length > 0) {

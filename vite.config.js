@@ -27,7 +27,7 @@ export default defineConfig({
           jquery: '$',
         },
       },
-      external: ['jquery', 'gsap'],
+      external: ['jquery'],
     },
   },
 })

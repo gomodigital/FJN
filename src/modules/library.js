@@ -4,8 +4,7 @@ export function library() {
   const searchInput = $('#library-search_input');
   const searchReset = $('#library-search_reset');
   const searchSubmit = $('#library-search_submit');
-  const featuredArticles = $('.library-articles.is-featured');
-  const filterTrigger = $('.jetboost-filter-trigger');
+  // const filterTrigger = $('.jetboost-filter-trigger');
   const typesClear = $('.library-types_clear');
 
   // Set input type to "search" on page load
@@ -13,30 +12,7 @@ export function library() {
   searchReset.hide();
 
   // Check if there are any query parameters on page load
-  const searchParams = new URLSearchParams(window.location.search);
-  if (searchInput.val().length > 0 || searchParams.toString().length > 0) {
-    hideFeaturedArticles();
-    searchReset.show();
-    searchSubmit.hide();
-  } else {
-    showFeaturedArticles();
-    searchSubmit.show();
-  }
-
-  if (filterTrigger.hasClass('jetboost-filter-active')) {
-    hideFeaturedArticles();
-  } else {
-    showFeaturedArticles();
-  }
-
-  // Show featured articles when filter is clicked
-  filterTrigger.on('click', function () {
-    if ($(this).hasClass('jetboost-filter-active')) {
-      hideFeaturedArticles();
-    } else {
-      showFeaturedArticles();
-    }
-  });
+  updateFeaturedArticlesVisibility();
 
   // Show featured articles when clear button is clicked
   typesClear.on('click', function () {
@@ -64,18 +40,34 @@ export function library() {
     searchReset.hide();
     searchSubmit.show();
   });
+}
 
-  // Show featured articles
-  function showFeaturedArticles() {
-    if (featuredArticles.length > 0) {
-      featuredArticles.show();
-    }
-  }
-
-  // Hide featured articles
-  function hideFeaturedArticles() {
-    if (featuredArticles.length > 0) {
-      featuredArticles.hide();
-    }
+// Show featured articles
+function showFeaturedArticles() {
+  const featuredArticles = $('.library-articles.is-featured');
+  if (featuredArticles.length > 0) {
+    featuredArticles.show();
   }
 }
+
+// Hide featured articles
+function hideFeaturedArticles() {
+  const featuredArticles = $('.library-articles.is-featured');
+  if (featuredArticles.length > 0) {
+    featuredArticles.hide();
+  }
+}
+
+// Update featured articles visibility based on the query string
+function updateFeaturedArticlesVisibility() {
+  const searchParams = new URLSearchParams(window.location.search);
+  if (searchParams.toString().length > 0) {
+    hideFeaturedArticles();
+  } else {
+    showFeaturedArticles();
+  }
+}
+
+window.JetboostListUpdated = function (collectionList) { // eslint-disable-line
+  updateFeaturedArticlesVisibility();
+};
